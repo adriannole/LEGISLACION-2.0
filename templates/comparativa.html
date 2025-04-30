@@ -8,6 +8,7 @@
 </head>
 <body>
   <h2>🧾 Comparativa Profesional de Casos de Estudio</h2>
+
   <div class="doc-comparativa">
     <div class="doc-box">
         <h3>👤 Caso del Usuario</h3>
@@ -27,7 +28,7 @@
   </div>
 
   <div class="comparacion">
-    <h3>📊 Evaluación por IA</h3>
+    <h3>📊 Evaluación Comparativa</h3>
     <canvas id="graficoComparacion" width="600" height="300"></canvas>
   </div>
 
@@ -37,18 +38,22 @@
       A continuación, se presenta un análisis comparativo entre el caso original del usuario y la versión mejorada por inteligencia artificial:
     </p>
     {{ comparacion_tabla | safe }}
-    <p style="text-align: justify; margin-top: 15px;">
-      Como se evidencia, la versión generada por IA cumple con criterios técnicos, claridad estructural y mejor alineación con ISO 9001. Se recomienda al grupo tomarla como guía para mejorar la redacción y organización de sus casos de estudio.
-    </p>
+    {{ conclusion | safe }}
   </div>
 
   <script>
-    const evaluacionUsuario = [8, 6, 7, 7];
+    const evaluacionUsuario = [
+      {{ evaluacion_usuario.claridad }},
+      {{ evaluacion_usuario.iso }},
+      {{ evaluacion_usuario.profundidad }},
+      {{ evaluacion_usuario.viabilidad }}
+    ];
+
     const evaluacionIA = [
-      {{ evaluacion.claridad }},
-      {{ evaluacion.iso }},
-      {{ evaluacion.profundidad }},
-      {{ evaluacion.viabilidad }}
+      {{ evaluacion_ia.claridad }},
+      {{ evaluacion_ia.iso }},
+      {{ evaluacion_ia.profundidad }},
+      {{ evaluacion_ia.viabilidad }}
     ];
 
     const ctx = document.getElementById('graficoComparacion').getContext('2d');
