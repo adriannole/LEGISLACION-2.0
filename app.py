@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, send_from_directory
 import os
 import requests
-from utils.extract_pdf import extraer_caso_estudio
+
 from docx import Document
 import json
 import markdown  # nuevo
+from utils.extract_pdf import extraer_caso_estudio_md
+
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -91,8 +93,8 @@ def cargar():
             ruta_pdf = os.path.join(app.config['UPLOAD_FOLDER'], archivo.filename)
             archivo.save(ruta_pdf)
 
-            caso_usuario = extraer_caso_estudio(ruta_pdf)
-            caso_usuario = caso_usuario.replace('<br>', '\n')  # limpia saltos de línea planos
+            caso_usuario_md = extraer_caso_estudio_md(ruta_pdf)
+            caso_usuario = markdown.markdown(caso_usuario_md)
 
             prompt_ia = (
                 "Eres un experto en ISO 9001. Reescribe este caso de estudio "
@@ -108,7 +110,8 @@ def cargar():
             evaluacion = evaluar_caso_con_ia(caso_ia_md)
 
             # Guardar documentos en Word
-            guardar_en_docx(caso_usuario, os.path.join(RESULTADOS_FOLDER, 'caso_usuario.docx'))
+            guardar_en_docx(caso_usuario_md, os.path.join(RESULTADOS_FOLDER, 'caso_usuario.docx'))
+
             guardar_en_docx(caso_ia_md, os.path.join(RESULTADOS_FOLDER, 'caso_ia.docx'))
 
             return render_template('comparativa.html',
@@ -116,7 +119,7 @@ def cargar():
                        caso_ia=caso_ia,
                        grupo=grupo_resultado,
                        evaluacion=evaluacion,
-                       comparacion_tabla=generar_comparacion_tabla(caso_usuario, caso_ia))
+                       comparacion_tabla=generar_comparacion_tabla(caso_usuario_md, caso_ia_md))
 
 
     return render_template('cargar_pdf.html')

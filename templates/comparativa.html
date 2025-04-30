@@ -12,19 +12,12 @@
     <div class="doc-box">
         <h3>👤 Caso del Usuario</h3>
         <div class="doc-content">
-          {% set partes_usuario = caso_usuario.split('\n\n') %}
-          {% for parrafo in partes_usuario %}
-            {% if parrafo|length < 100 and parrafo.isupper() %}
-              <h3>{{ parrafo }}</h3>
-            {% elif parrafo.startswith("**") and parrafo.endswith("**") %}
-              <p><strong>{{ parrafo[2:-2] }}</strong></p>
-            {% else %}
-              <p>{{ parrafo }}</p>
-            {% endif %}
-          {% endfor %}
+          {{ caso_usuario | safe }}
         </div>
         <a href="/descargar/caso_usuario.docx" class="btn">📥 Descargar Word</a>
-      </div>
+    </div>
+    
+    
 
     <div class="doc-box">
       <h3>🤖 Reescritura por IA (ISO 9001)</h3>
