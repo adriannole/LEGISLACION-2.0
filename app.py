@@ -132,4 +132,5 @@ def descargar(archivo):
     return send_from_directory(RESULTADOS_FOLDER, archivo, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Usa el puerto definido por Railway o 5000 por defecto
+    app.run(debug=True, host='0.0.0.0', port=port)
