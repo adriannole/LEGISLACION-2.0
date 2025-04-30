@@ -1,17 +1,39 @@
 body {
-    font-family: "Times New Roman", serif;
-    background-color: #f7f7f7;
-    padding: 40px;
-  }
+  font-family: "Arial", sans-serif; /* Cambia a una fuente más moderna y profesional */
+  background: linear-gradient(135deg, #e3f2fd, #0d4777); /* Fondo con degradado suave */
+  color: #333; /* Color de texto más oscuro para mejor legibilidad */
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 20px; /* Reduce el padding para un diseño más compacto */
+  line-height: 1.6; /* Mejora la legibilidad del texto */
+  display: flex; /* Centra el contenido si es necesario */
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  justify-content: flex-start; /* Alinea los elementos al inicio */
+  align-items: center;
+  min-height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+}
+  .containerInicio {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
   
+
+.container {
+  text-align: center;
+  animation: fadeIn 1.0s ease-in-out;
+  font-size: 2.5rem; /* Ajusta el tamaño según lo que necesites */
+
+}
   h2, h3 {
     text-align: center;
   }
   
   .doc-comparativa {
     display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se apilen si no hay espacio suficiente */
     gap: 30px;
     margin-bottom: 30px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
   }
   
   .doc-box {
@@ -20,24 +42,34 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    min-width: 300px; /* Asegura un tamaño mínimo para cada caja */
   }
   
   .doc-content {
     text-align: justify;
   }
   
-  .btn {
+.btn {
     display: inline-block;
     margin-top: 15px;
-    padding: 8px 16px;
-    background-color: #007bff;
+    padding: 12px 24px; /* Aumenta el espacio interno */
+    font-size: 1.2rem; /* Aumenta el tamaño de la fuente */
+    background-color: #025c72;
     color: white;
     text-decoration: none;
-    border-radius: 4px;
-  }
-  
+    border-radius: 6px; /* Ajusta el redondeo si lo deseas */
+    transition: transform 0.3s, background-color 0.3s; /* Agrega animación para hover */
+}
+
+.btn:hover {
+    background-color: #015521; /* Cambia el color al pasar el cursor */
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
   .comparacion {
     margin-top: 40px;
+    display: block; /* Asegura que cada sección ocupe toda la fila */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    text-align: justify;
   }
   
   canvas {
@@ -54,3 +86,78 @@ body {
     font-weight: bold;
   }
   
+
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+form {
+  text-align: center; /* Centra el formulario */
+  margin-top: 20px;
+}
+
+input[type="file"] {
+  display: block;
+  margin: 10px auto; /* Centra el botón de seleccionar archivo */
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #025c72;
+  border-radius: 6px;
+  background-color: #f7f7f7;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+input[type="file"]:hover {
+  background-color: #e0f7fa;
+  transform: scale(1.05);
+}
+
+textarea {
+  background-color: #e2e2e2;
+  display: block;
+  margin: 10px auto;
+  padding: 15px;
+  font-size: 1rem;
+  border: 2px solid #025c72;
+  border-radius: 6px;
+  width: 90%; /* Ajusta el ancho */
+  max-width: 800px; /* Ancho máximo */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  resize: vertical; /* Permite redimensionar solo verticalmente */
+}
+
+textarea:focus {
+
+  outline: none;
+  border-color: #015521;
+  box-shadow: 0 0 10px rgba(1, 85, 33, 0.5);
+}
+
+button[type="submit"] {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #025c72;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #015521;
+  transform: scale(1.1);
+}
