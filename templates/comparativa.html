@@ -14,7 +14,13 @@
         <div class="doc-content">
           {% set partes_usuario = caso_usuario.split('\n\n') %}
           {% for parrafo in partes_usuario %}
-            <p>{{ parrafo | e }}</p>
+            {% if parrafo|length < 100 and parrafo.isupper() %}
+              <h3>{{ parrafo }}</h3>
+            {% elif parrafo.startswith("**") and parrafo.endswith("**") %}
+              <p><strong>{{ parrafo[2:-2] }}</strong></p>
+            {% else %}
+              <p>{{ parrafo }}</p>
+            {% endif %}
           {% endfor %}
         </div>
         <a href="/descargar/caso_usuario.docx" class="btn">📥 Descargar Word</a>
@@ -37,9 +43,14 @@
   <div class="comparacion">
     <h3>📌 Conclusión Final</h3>
     <p style="text-align: justify;">
-      La inteligencia artificial ha producido un caso más estructurado, enfocado en los principios de gestión de calidad según la norma ISO 9001. La claridad, profundidad técnica y la orientación al cliente son destacables. Se recomienda al grupo tomarlo como referencia para futuras mejoras.
+      A continuación, se presenta un análisis comparativo entre el caso original del usuario y la versión mejorada por inteligencia artificial:
+    </p>
+    {{ comparacion_tabla | safe }}
+    <p style="text-align: justify; margin-top: 15px;">
+      Como se evidencia, la versión generada por IA cumple con criterios técnicos, claridad estructural y mejor alineación con ISO 9001. Se recomienda al grupo tomarla como guía para mejorar la redacción y organización de sus casos de estudio.
     </p>
   </div>
+  
 
   <script>
     const evaluacionUsuario = [8, 6, 7, 7];

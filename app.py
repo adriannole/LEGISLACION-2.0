@@ -43,6 +43,40 @@ def evaluar_caso_con_ia(caso_ia):
             return {"claridad": 7, "iso": 7, "profundidad": 7, "viabilidad": 7}
     return {"claridad": 5, "iso": 5, "profundidad": 5, "viabilidad": 5}
 
+
+def generar_comparacion_tabla(caso_usuario, caso_ia):
+    return f"""
+    <table border="1" style="width:100%; border-collapse: collapse; margin-top: 20px;">
+      <tr>
+        <th>Aspecto</th>
+        <th>Versión del Usuario</th>
+        <th>Versión IA</th>
+      </tr>
+      <tr>
+        <td>Estructura</td>
+        <td>Texto lineal, sin énfasis claro</td>
+        <td>Bien organizada con títulos y subtítulos</td>
+      </tr>
+      <tr>
+        <td>Claridad</td>
+        <td>Explicación dispersa y sin énfasis</td>
+        <td>Ideas claras y bien presentadas</td>
+      </tr>
+      <tr>
+        <td>Uso de ISO 9001</td>
+        <td>Menciones generales sin desarrollo</td>
+        <td>Aplicación directa de principios ISO</td>
+      </tr>
+      <tr>
+        <td>Viabilidad Técnica</td>
+        <td>Ideas poco desarrolladas</td>
+        <td>Propuesta factible y detallada</td>
+      </tr>
+    </table>
+    """
+
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -78,10 +112,12 @@ def cargar():
             guardar_en_docx(caso_ia_md, os.path.join(RESULTADOS_FOLDER, 'caso_ia.docx'))
 
             return render_template('comparativa.html',
-                                   caso_usuario=caso_usuario,
-                                   caso_ia=caso_ia,
-                                   grupo=grupo_resultado,
-                                   evaluacion=evaluacion)
+                       caso_usuario=caso_usuario,
+                       caso_ia=caso_ia,
+                       grupo=grupo_resultado,
+                       evaluacion=evaluacion,
+                       comparacion_tabla=generar_comparacion_tabla(caso_usuario, caso_ia))
+
 
     return render_template('cargar_pdf.html')
 
