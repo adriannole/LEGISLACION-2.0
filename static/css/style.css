@@ -1,0 +1,56 @@
+body {
+    font-family: "Times New Roman", serif;
+    background-color: #f7f7f7;
+    padding: 40px;
+  }
+  
+  h2, h3 {
+    text-align: center;
+  }
+  
+  .doc-comparativa {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .doc-box {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  
+  .doc-content {
+    text-align: justify;
+  }
+  
+  .btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .comparacion {
+    margin-top: 40px;
+  }
+  
+  canvas {
+    max-width: 100%;
+  }
+  
+  .doc-content h1, .doc-content h2, .doc-content h3 {
+    font-weight: bold;
+    color: #cdcdcd;
+    margin-top: 20px;
+  }
+  
+  .doc-content strong, .doc-content b {
+    font-weight: bold;
+  }
+  

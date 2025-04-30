@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparativa de Casos</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>🧾 Comparativa Profesional de Casos de Estudio</h2>
+  <div class="doc-comparativa">
+    <div class="doc-box">
+        <h3>👤 Caso del Usuario</h3>
+        <div class="doc-content">
+          {% set partes_usuario = caso_usuario.split('\n\n') %}
+          {% for parrafo in partes_usuario %}
+            <p>{{ parrafo | e }}</p>
+          {% endfor %}
+        </div>
+        <a href="/descargar/caso_usuario.docx" class="btn">📥 Descargar Word</a>
+      </div>
+
+    <div class="doc-box">
+      <h3>🤖 Reescritura por IA (ISO 9001)</h3>
+      <div class="doc-content">
+        {{ caso_ia | safe }}
+      </div>
+      <a href="/descargar/caso_ia.docx" class="btn">📥 Descargar Word</a>
+    </div>
+  </div>
+
+  <div class="comparacion">
+    <h3>📊 Evaluación por IA</h3>
+    <canvas id="graficoComparacion" width="600" height="300"></canvas>
+  </div>
+
+  <div class="comparacion">
+    <h3>📌 Conclusión Final</h3>
+    <p style="text-align: justify;">
+      La inteligencia artificial ha producido un caso más estructurado, enfocado en los principios de gestión de calidad según la norma ISO 9001. La claridad, profundidad técnica y la orientación al cliente son destacables. Se recomienda al grupo tomarlo como referencia para futuras mejoras.
+    </p>
+  </div>
+
+  <script>
+    const evaluacionUsuario = [8, 6, 7, 7];
+    const evaluacionIA = [
+      {{ evaluacion.claridad }},
+      {{ evaluacion.iso }},
+      {{ evaluacion.profundidad }},
+      {{ evaluacion.viabilidad }}
+    ];
+
+    const ctx = document.getElementById('graficoComparacion').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Claridad', 'Aplicación ISO', 'Profundidad Técnica', 'Viabilidad'],
+        datasets: [
+          {
+            label: 'Usuario',
+            data: evaluacionUsuario,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)'
+          },
+          {
+            label: 'IA',
+            data: evaluacionIA,
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 10
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

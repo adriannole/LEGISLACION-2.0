@@ -1,0 +1,5 @@
+flask
+pdfplumber
+requests
+matplotlib
+python-docx

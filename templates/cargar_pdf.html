@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Subir Caso{% endblock %}
+{% block content %}
+<h2>Subir caso de estudio</h2>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="pdf" accept="application/pdf" required><br><br>
+    <textarea name="grupo" placeholder="Análisis o respuesta del grupo..." rows="4" cols="50"></textarea><br><br>
+    <button type="submit">Enviar</button>
+</form>
+{% endblock %}
