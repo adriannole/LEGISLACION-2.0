@@ -17,6 +17,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 GEMINI_API_KEY = 'AIzaSyD5sdmxBouRcNPmDFU90Z2zDNYu6u2axfE'
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
+
 def guardar_en_docx(texto, ruta):
     doc = Document()
     for parrafo in texto.split("\n\n"):
@@ -76,8 +77,6 @@ def generar_comparacion_tabla(caso_usuario, caso_ia):
       </tr>
     </table>
     """
-
-
 
 @app.route('/')
 def index():
