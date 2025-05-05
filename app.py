@@ -33,7 +33,7 @@ def guardar_en_docx(texto, ruta):
 
 def evaluar_caso_con_ia(caso_texto):
     prompt_evaluador = (
-        "Eres un auditor experto con 20 años de experiencia en calidad bajo la norma ISO 9000. "
+        "Eres un auditor experto con 20 años de experiencia en calidad bajo la norma ISO 37001. "
         "Evalúa del 1 al 10 los siguientes criterios del siguiente caso de estudio:\n\n"
         "1. Claridad\n2. Aplicación de ISO 9001\n3. Profundidad técnica\n4. Viabilidad práctica\n\n"
         f"Texto a evaluar:\n\n{caso_texto}\n\n"
